@@ -1,0 +1,14 @@
+{
+    "id": "sagemaker-model-created",
+    "description": "Trigger Lambda function when a SageMaker model is created",
+    "eventPattern": {
+      "source": ["aws.sagemaker"],
+      "detail-type": ["SageMaker Model Created"]
+    },
+    "targets": [
+      {
+        "arn": "arn:aws:lambda:us-east-1:690744128016:function:lambda_function",
+        "id": "RegisterModelLambda"
+      }
+    ]
+  }

@@ -1,0 +1,24 @@
+# pyproject.toml
+[tool.pylint.messages_control]
+disable = [
+    "missing-function-docstring",
+    "missing-final-newline",
+    "missing-class-docstring",
+    "missing-module-docstring",
+    "invalid-name",
+    "too-few-public-methods",
+    "method-docstring", 
+    "trailing-whitespace",  
+    "line-too-long",
+    "trailing-newlines",
+    "f-string-without-interpolation"
+]
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+skip-string-normalization = true
+
+[tool.isort]
+multi_line_output = 3
+length_sort = true
