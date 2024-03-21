@@ -163,7 +163,7 @@ Recomm_Movies/
    - [Download Terraform](https://www.terraform.io/downloads) and set it up locally on your machine.
 
 2. **Navigate to Terraform Directory**: 
-   - Using your command line interface, navigate to the directory containing your Terraform configuration files.
+   - Using your command line interface, navigate to the directory containing your Terraform configuration files `terraform`.
 
 3. **Modify Terraform Code**: 
    - Open the Terraform configuration files (typically with a `.tf` extension) in a text editor. Customize the following aspects:
@@ -229,4 +229,4 @@ terraform destroy --auto-approve
 ```
 
 The screenshot below shows that all 22 resources created with Terraform have been successfully destroyed:
-![Integration Tests Success Notification](docs/terraform_destroyed.png.png)
+![Terraform Destroye Notification](docs/terraform_destroyed.png.png)
