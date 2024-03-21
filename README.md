@@ -147,9 +147,9 @@ Recomm_Movies/
 ### Step 4: Execute the State Machine
 After deploying the terraform infrastructure, execute the step function using the following command:
 
-    ```bash
-    aws stepfunctions start-execution --state-machine-arn <state-machine-arn>
-    ```
+```bash
+aws stepfunctions start-execution --state-machine-arn <state-machine-arn>
+```
 
 ![Step Function Success Notification](docs/step_function_success.png)
 
