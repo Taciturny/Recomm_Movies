@@ -83,12 +83,10 @@ Recomm_Movies/
 
 ### Step 0: Set Up Python Environment
 
-### Step 0: Set Up Python Environment
-
 1. **Create Virtual Environment** (Optional but Recommended):
     - It's recommended to work within a virtual environment to isolate your project's dependencies. If you're using `venv`, run the following command:
         ```bash
-        python -m venv myenv  python=3.8
+        python -m venv myenv --python=3.8
         ```
     - If you're using `conda`, create a new environment:
         ```bash
@@ -120,12 +118,11 @@ Recomm_Movies/
 
 ### Step 2: Configure AWS Environment
 
-1. After cloning, create an account in AWS [Sign-Up](https://portal.aws.amazon.com/billing/signup#/start/email)
-2. Locate the IAM services under Roles and create the User & Access keys
-3. Assign the AdministratorFullAccess permission for this project (Note: This permission is typically not advisable, but it's used for this project)
-4. Download AWS CLI locally [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-5. Configure AWS CLI and provide the keys from step 2
-6. Create an S3 bucket for terraform and save the data for model training:
+1. After Installing, create an account in AWS. Go to the [IAM service](https://console.aws.amazon.com/iam/) under Roles and create a User & Access keys.
+2. Assign the AdministratorFullAccess permission for this project (Note: This permission is typically not advisable, but it's used for this project)
+3. Download AWS CLI locally [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+4. Configure AWS CLI and provide the keys from step 2
+5. Create an S3 bucket for terraform and save the data for model training:
 
    ```bash
    aws s3 mb s3://[bucket_name]
@@ -135,7 +132,7 @@ Recomm_Movies/
 1. Navigate to the `src` folder. Before running the `train.py` script, users can customize the following inputs:
 
 2. **S3 Bucket Name and Key**: 
-   - Users can specify the name of the S3 bucket where the dataset is stored (`s3_bucket`) and the key (path) to the CSV file (`s3_key`) and this will save the .
+   - Users can specify the name of the S3 bucket where the dataset is stored (`s3_bucket`) and the key (path) to the CSV file (`s3_key`) and this will save the protobuf data suitable for matrix factorization modeling.
 
 3. **Hyperparameters**:
    - `num_factors`: Number of factors to use in the factorization model.
@@ -182,8 +179,8 @@ Recomm_Movies/
     ../src/deploy.sh
     ```
 ### Step 5: Execute the State Machine
-After deploying the terraform infrastructure, execute the step function using the following command:
-
+After deploying the Terraform infrastructure, execute the Step Function using the following command, replacing `<state-machine-arn>` with the ARN of your state machine:
+    
 ```bash
 aws stepfunctions start-execution --state-machine-arn <state-machine-arn>
 ```
