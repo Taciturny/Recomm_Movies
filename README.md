@@ -158,33 +158,39 @@ Recomm_Movies/
 
 3. **Modify Terraform Code**: Open the Terraform configuration files (typically with a `.tf` extension) in a text editor. Here are the key aspects that can be customized:
 
-    * **Bucket Name**: In the Terraform code, locate the declaration for the S3 bucket and update the `bucket` attribute with your desired bucket name.
-
-    * **IAM Role Names**: If you want to change the names of IAM roles, find the relevant resource blocks for IAM roles and update the `name` attribute.
-
-    * **IAM Policy Permissions**: Adjust the permissions in the IAM policy documents according to your requirements. You can add or remove actions and resources as needed.
-
-    * **Lambda Function Configuration**: Modify parameters such as function name, handler, runtime, memory size, and timeout in the Lambda function resource block. This can be found in the variables.tf.
-
-    * **CloudWatch Event Rule**: Customize the event pattern in the CloudWatch event rule to match the events that should trigger the Lambda function.
-
-    * **CloudWatch Log Groups and Streams**: Update the names and retention periods of CloudWatch log groups and streams as desired.
-
-    * **CloudWatch Alarms**: Configure CloudWatch alarms with appropriate thresholds and settings for monitoring Lambda errors and Step Function execution errors.
-
-    * **Step Function Definition**: Adjust the Step Function definition to define the workflow of your state machine. Update task resources, parameters, and transitions as needed.
+    - **Bucket Name**: In the Terraform code, locate the declaration for the S3 bucket and update the `bucket` attribute with your desired bucket name.
+    
+    - **IAM Role Names**: If you want to change the names of IAM roles, find the relevant resource blocks for IAM roles and update the `name` attribute.
+    
+    - **IAM Policy Permissions**: Adjust the permissions in the IAM policy documents according to your requirements. You can add or remove actions and resources as needed.
+    
+    - **Lambda Function Configuration**: Modify parameters such as function name, handler, runtime, memory size, and timeout in the Lambda function resource block. This can be found in the `variables.tf`.
+    
+    - **CloudWatch Event Rule**: Customize the event pattern in the CloudWatch event rule to match the events that should trigger the Lambda function.
+    
+    - **CloudWatch Log Groups and Streams**: Update the names and retention periods of CloudWatch log groups and streams as desired.
+    
+    - **CloudWatch Alarms**: Configure CloudWatch alarms with appropriate thresholds and settings for monitoring Lambda errors and Step Function execution errors.
+    
+    - **Step Function Definition**: Adjust the Step Function definition to define the workflow of your state machine. Update task resources, parameters, and transitions as needed.
 
 4. **Deploy Terraform Infrastructure**: After making the necessary modifications, save your changes and run the following command to deploy the Terraform infrastructure:
+
     ```bash
     ../src/deploy.sh
     ```
+
 ### Step 5: Execute the State Machine
+
 After deploying the Terraform infrastructure, execute the Step Function using the following command, replacing `<state-machine-arn>` with the ARN of your state machine:
-    
+
 ```bash
 aws stepfunctions start-execution --state-machine-arn <state-machine-arn>
 ```
+Refer to the screenshot below to locate the ARN, which should be placed in the designated area: `<state-machine-arn>`
+![State Machine Screenshot ](docs/state_arn.png)
 
+The screensot shows the success of the step function state machines
 ![Step Function Success Notification](docs/step_function_success.png)
 
 
