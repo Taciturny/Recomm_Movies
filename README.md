@@ -25,10 +25,10 @@ The primary objective of this project is to develop an efficient and accurate mo
 The project benefits movie enthusiasts, streaming platforms, and content creators by providing personalized movie recommendations tailored to individual preferences.
 
 ## Installation
-
 ```bash
 # Clone the repository
 git clone https://github.com/Taciturny/Recomm_Movies.git
+
 # Change to the project directory
 cd Recomm_Movies
 ```
@@ -75,7 +75,6 @@ Recomm_Movies/
 │
 ├── README.md                     # Project documentation
 └── requirements.txt              # Python dependencies
-
 ```
 
 ## Reproducibility Steps
