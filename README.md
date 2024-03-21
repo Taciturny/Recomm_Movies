@@ -31,6 +31,8 @@ The project benefits movie enthusiasts, streaming platforms, and content creator
 git clone https://github.com/Taciturny/Recomm_Movies.git
 # Change to the project directory
 cd Recomm_Movies
+```
+![Prefect Architecture](docs/project_arch.png)
 
 # Project Structure
 ```bash
