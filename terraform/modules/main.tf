@@ -279,6 +279,9 @@ resource "aws_cloudwatch_metric_alarm" "sfn_execution_error_alarm" {
 }
 
 
+# Hyperparameters can be changed according to the accepted parameters of the matrix factorization algorithm.
+# feature_dim is the shape of X_train obtained from train.py.
+
 resource "aws_sfn_state_machine" "sfn_state_machine" {
   name     = "${var.project_name}-state-machine"
   role_arn = aws_iam_role.sf_exec_role.arn

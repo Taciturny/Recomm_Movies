@@ -13,7 +13,7 @@ Categorical variables like userId and movieId are one-hot encoded using sklearn'
 
 ## Model Building
 The recommendation system utilizes machine learning algorithms to predict user preferences.
-Techniques such as collaborative filtering and matrix factorization may be employed to generate accurate recommendations.
+Techniques such as collaborative filtering and matrix factorization were be employed to generate accurate recommendations.
 
 ## Objective
 The primary objective of this project is to develop an efficient and accurate movie recommendation system that enhances user satisfaction and engagement on movie platforms.
@@ -88,13 +88,35 @@ Recomm_Movies/
 3. Assign the AdministratorFullAccess permission for this project (Note: This permission is typically not advisable, but it's used for this project)
 4. Download AWS CLI locally [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 5. Configure AWS CLI and provide the keys from step 2
-6. Create an S3 bucket for terraform state using the AWS CLI:
+6. Create an S3 bucket for terraform and save the data for model training:
 
    ```bash
    aws s3 mb s3://[bucket_name]
    ```
 
-### Step 2: Configure Terraform
+### Step 2: Run Train script
+1. Navigate to the `src` folder. Before running the `train.py` script, users can customize the following inputs:
+
+2. **S3 Bucket Name and Key**: 
+   - Users can specify the name of the S3 bucket where the dataset is stored (`s3_bucket`) and the key (path) to the CSV file (`s3_key`).
+
+3. **Hyperparameters**:
+   - `num_factors`: Number of factors to use in the factorization model.
+   - `epochs`: Number of training epochs.
+   - `mini_batch_size`: Mini batch size for training.
+
+4. **SageMaker Instance Type (Optional)**:
+   - Users can optionally specify the SageMaker instance type (`instance_type`) for training the model. Default value is `ml.c4.xlarge`.
+
+5. Factoriaztion-Machine image
+   * Users should print the image uri which will be used in the step function in step 3
+
+6. Run the command
+    ```bash
+    python train.py
+    ```
+
+### Step 3: Configure Terraform
 
 1. **Download and Configure Terraform**: [Download Terraform](https://www.terraform.io/downloads) and set it up locally on your machine.
 
@@ -119,7 +141,26 @@ Recomm_Movies/
     * **Step Function Definition**: Adjust the Step Function definition to define the workflow of your state machine. Update task resources, parameters, and transitions as needed.
 
 4. **Deploy Terraform Infrastructure**: After making the necessary modifications, save your changes and run the following command to deploy the Terraform infrastructure:
-
     ```bash
     ../src/deploy.sh
     ```
+### Step 4: Execute the State Machine
+After deploying the terraform infrastructure, execute the step function using the following command:
+    ```bash
+    aws stepfunctions start-execution --state-machine-arn <state-machine-arn>
+    ```
+
+![Step Function Success Notification](docs/step_function_success.png)
+
+
+### Step 5: Integration and Unit Tests
+1. Navigate to the `Tests` folder
+2. To run the unit test, navigate to the `Lmabda` folder execute the following command:
+    ```bash
+    python unit_test.py
+    ```
+3. Additionally, navigate to the `infrastructure` folder for the integration test and execute the following command:
+    ```bash
+    pytest -v test_integration.py
+    ```
+![Integration Tests Success Notification](docs/integration_tests_success.png)
