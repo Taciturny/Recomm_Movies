@@ -229,4 +229,4 @@ terraform destroy --auto-approve
 ```
 
 The screenshot below shows that all 22 resources created with Terraform have been successfully destroyed:
-![Terraform Destroye Notification](docs/terraform_destroyed.png.png)
+![Terraform Destroyed Notification](docs/terraform_destroyed.png)
