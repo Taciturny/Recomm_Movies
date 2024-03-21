@@ -42,7 +42,7 @@ Recomm_Movies/
 ├── data/
 │   ├── ratings_small.csv        
 │   
-│  
+│-- requirements.txt     # libraries needed for the project
 │
 ├── terraform/
 │   ├── modules/
@@ -81,7 +81,44 @@ Recomm_Movies/
 
 ## Reproducibility Steps
 
-### Step 1: Configure AWS Environment
+### Step 0: Set Up Python Environment
+
+### Step 0: Set Up Python Environment
+
+1. **Create Virtual Environment** (Optional but Recommended):
+    - It's recommended to work within a virtual environment to isolate your project's dependencies. If you're using `venv`, run the following command:
+        ```bash
+        python -m venv myenv  python=3.8
+        ```
+    - If you're using `conda`, create a new environment:
+        ```bash
+        conda create --name myenv python=3.8
+        ```
+
+2. **Activate the Environment**:
+    - For `venv`:
+        ```bash
+        source myenv/bin/activate
+        ```
+    - For `conda`:
+        ```bash
+        conda activate myenv
+        ```
+
+### Step 1: Install Dependencies
+
+1. **Install pip (if not already installed)**:
+    - If you haven't installed `pip` yet, you can do so by following [these instructions](https://pip.pypa.io/en/stable/installation/).
+
+2. **Install Requirements**:
+    - Navigate to the root directory of your project where `requirements.txt` is located.
+    - Run the following command to install the required packages:
+        ```bash
+        pip install -r requirements.txt
+        ```
+
+
+### Step 2: Configure AWS Environment
 
 1. After cloning, create an account in AWS [Sign-Up](https://portal.aws.amazon.com/billing/signup#/start/email)
 2. Locate the IAM services under Roles and create the User & Access keys
@@ -94,11 +131,11 @@ Recomm_Movies/
    aws s3 mb s3://[bucket_name]
    ```
 
-### Step 2: Run Train script
+### Step 3: Run Train script
 1. Navigate to the `src` folder. Before running the `train.py` script, users can customize the following inputs:
 
 2. **S3 Bucket Name and Key**: 
-   - Users can specify the name of the S3 bucket where the dataset is stored (`s3_bucket`) and the key (path) to the CSV file (`s3_key`).
+   - Users can specify the name of the S3 bucket where the dataset is stored (`s3_bucket`) and the key (path) to the CSV file (`s3_key`) and this will save the .
 
 3. **Hyperparameters**:
    - `num_factors`: Number of factors to use in the factorization model.
@@ -116,7 +153,7 @@ Recomm_Movies/
     python train.py
     ```
 
-### Step 3: Configure Terraform
+### Step 4: Configure Terraform
 
 1. **Download and Configure Terraform**: [Download Terraform](https://www.terraform.io/downloads) and set it up locally on your machine.
 
@@ -144,7 +181,7 @@ Recomm_Movies/
     ```bash
     ../src/deploy.sh
     ```
-### Step 4: Execute the State Machine
+### Step 5: Execute the State Machine
 After deploying the terraform infrastructure, execute the step function using the following command:
 
 ```bash
@@ -154,7 +191,7 @@ aws stepfunctions start-execution --state-machine-arn <state-machine-arn>
 ![Step Function Success Notification](docs/step_function_success.png)
 
 
-### Step 5: Integration and Unit Tests
+### Step 6: Tests (Unit and Integration Tests)
 1. Navigate to the `Tests` folder
 2. To run the unit test, navigate to the `Lmabda` folder execute the following command:
     ```bash
