@@ -28,8 +28,9 @@ jobs:
 
       - name: Execute deploy script
         run: |
-          chmod +x ../src/deploy.sh
-          ../src/deploy.sh
+          cd terraform  # Navigate to the terraform directory
+          chmod +x ../src/deploy.sh  # Make the script executable
+          ../src/deploy.sh  # Execute the deploy script    
 
       - name: Run Unit Tests
         working-directory: Tests/Lambda
@@ -41,8 +42,6 @@ jobs:
 
       - name: Destroy infrastructure
         run: terraform destroy -auto-approve
-
-
 
 
 
