@@ -20,6 +20,8 @@ class TestIntegration(unittest.TestCase):
         """
         Set up AWS clients and variables for testing.
         """
+        cls.region = 'us-east-1'  # Change this to your desired region
+        boto3.setup_default_session(region_name=cls.region)
         cls.iam_client = boto3.client('iam')
         cls.s3_client = boto3.client('s3')
         cls.cloudwatch_client = boto3.client('cloudwatch')
