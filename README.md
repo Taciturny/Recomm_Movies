@@ -11,7 +11,7 @@ The dataset used for this project contains user ratings for various movies. Each
 The data is preprocessed to create the target variable 'liked', indicating whether the user liked a movie (rating >= 4). Categorical variables like userId and movieId are one-hot encoded using sklearn's OneHotEncoder.
 
 ## Model Building
-The recommendation system utilizes machine learning algorithms to predict user preferences. Techniques such as collaborative filtering and matrix factorization are employed to generate accurate recommendations.
+The recommendation system utilizes machine learning algorithms to predict user preferences. Techniques such as collaborative filtering, content-based  filtering and matrix factorization are employed to generate accurate recommendations.
 
 ## Objective
 The primary objective of this project is to develop an efficient and accurate movie recommendation system that enhances user satisfaction and engagement on movie platforms.
@@ -203,8 +203,30 @@ Refer to the screenshot below to locate the `Arn`, which should be placed in the
 **Step Function Success Notification Screenshot**:
 ![Step Function Success Notification](docs/step_function_success.png)
 
+### Step 6: Test the Deployed Endpoint
 
-### Step 6: Tests (Unit and Integration Tests)
+Before executing the command, navigate to the `src` folder and provide the following:
+
+1. **Open the test.py Script**:
+   - Open the `test.py` script in a text editor.
+
+2. **Update Script Parameters**:
+   - Modify the following parameters in the script:
+     - `endpoint_name`: Replace `'your-endpoint-name'` with the name of your deployed SageMaker endpoint.
+     - `s3_bucket` and `s3_key`: Replace `'your-s3-bucket'` with the name of your S3 bucket where `test.protobuf` is located.
+![Endpoint Screenshot](docs/endpoint.png)
+
+3. **Run the Test Script**:
+   - After updating the script, execute the following command in the terminal or command prompt:
+
+     ```bash
+     python test.py
+     ```
+
+   This will fetch the `test.protobuf` file from your S3 bucket, invoke the SageMaker endpoint with this data, and print the prediction result.
+
+
+### Step 7: Tests (Unit and Integration Tests)
 
 1. **Navigate to the `Tests` Folder**:
    - Open your command line interface and navigate to the `Tests` folder in your project directory.
@@ -224,7 +246,7 @@ Refer to the screenshot below to locate the `Arn`, which should be placed in the
 The screenshot below indicates that all 14 tests were successful:
 ![Integration Tests Success Notification](docs/integration_tests_success.png)
 
-### Step 7: Clean Up
+### Step 8: Clean Up
 
 Execute the following command to clean up resources:
 
