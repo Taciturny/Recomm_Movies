@@ -205,18 +205,25 @@ Refer to the screenshot below to locate the `Arn`, which should be placed in the
 
 ### Step 6: Test the Deployed Endpoint
 
-Before executing the command, navigate to the `src` folder and provide the following:
+Navigate to the `src` folder and provide the following:
 
-1. **Open the test.py Script**:
+1. **Obtain Endpoint for Prediction**:
+   - Go to the AWS SageMaker console and navigate to Endpoints.
+   - Copy the endpoint name or URL for prediction.
+     Below is a screenshot of the endpoint:
+   ![Endpoint Screenshot](docs/endpoint.png)
+
+
+2. **Open the test.py Script**:
    - Open the `test.py` script in a text editor.
 
-2. **Update Script Parameters**:
-   - Modify the following parameters in the script:
-     - `endpoint_name`: Replace `'your-endpoint-name'` with the name of your deployed SageMaker endpoint.
-     - `s3_bucket` and `s3_key`: Replace `'your-s3-bucket'` with the name of your S3 bucket where `test.protobuf` is located.
-![Endpoint Screenshot](docs/endpoint.png)
 
-3. **Run the Test Script**:
+3. **Update Script Parameters**:
+   - Modify the following parameters in the script:
+     - `endpoint_name`: Replace `'your-endpoint-name'` with the copied endpoint name or URL.
+     - `s3_bucket` and `s3_key`: Replace `'your-s3-bucket'` with the name of your S3 bucket where `test.protobuf` is located.
+
+4. **Run the Test Script**:
    - After updating the script, execute the following command in the terminal or command prompt:
 
      ```bash
