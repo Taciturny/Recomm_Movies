@@ -39,42 +39,45 @@ cd Recomm_Movies
 Recomm_Movies/
 │
 ├── data/
-│   ├── ratings_small.csv        
+│   └── ratings_small.csv            # Sample movie ratings data
 │    
-│
 ├── terraform/
 │   ├── modules/
-│   │   ├── main.tf               # Terraform configuration for SageMaker, Lambda, Cloudwatch (Monitoring), Stepfunctions
-│   │   └── variables.tf          # Variables for SageMaker, Lambda, Cloudwatch (Monitoring), Stepfunctions
-│   ├── main.tf                   # Main Terraform configuration
-│   ├── provider.tf               # Provider configuration
-│   └── variables.tf   
+│   │   ├── main.tf                   # Terraform configuration for SageMaker, Lambda, Cloudwatch (Monitoring), Stepfunctions
+│   │   └── variables.tf              # Variables for SageMaker, Lambda, Cloudwatch (Monitoring), Stepfunctions
+│   ├── main.tf                       # Main Terraform configuration
+│   ├── provider.tf                   # Provider configuration
+│   └── variables.tf                  # Terraform variables
 │
 ├── src/
-│   ├── deploy.sh                 # Script to deploy the terraform
-│   ├── train.py                  # Training/Preprocessing script
-│   └── evaluate.py               # Evaluating script
+│   ├── deploy.sh                    # Script to deploy the terraform
+│   ├── train.py                     # Script for training models and preprocessing data
+│   ├── evaluate.py                  # Script for evaluating models
+│   ├── __init__.py                  # Initialization file for the src package
+│   ├── cb.py                        # Content-Based recommendation script
+│   ├── preprocess.py                # Script for data preprocessing for Content-Based recommendation
+│   ├── config/                      # Configuration files
+│   │   └── cf_config.py             # Configuration file for Collaborative Filtering
+│   └── cf.py                        # Collaborative Filtering recommendation script
 │
 ├── tests/
 │   ├── infrastructure/
-│   │   ├── test_integration.py     # Integration tests for Terraform configurations
-│   └── Lambda /
-│       ├── unit_test.py        # Unit tests for Lambda function
+│   │   └── test_integration.py      # Integration tests for Terraform configurations
+│   └── Lambda/
+│       └── unit_test.py             # Unit tests for Lambda function
 │
 ├── cicd/
 │   ├── pipeline/
-│   │   ├── pipeline.yaml         # AWS CodePipeline configuration
-│   │   └── ...
+│   │   └── pipeline.yaml            # AWS CodePipeline configuration
 │   └── scripts/
-│       ├── build.sh              # Script for building CI/CD artifacts
-│       └── deploy.sh             # Script for deploying CI/CD pipeline
+│       ├── build.sh                  # Script for building CI/CD artifacts
+│       └── deploy.sh                 # Script for deploying CI/CD pipeline
 │
 ├── docs/
-│   ├── architecture_diagram.png  # Architecture diagram
-│   └── ...
+│   └── architecture_diagram.png      # Architecture diagram
 │
-├── README.md                     # Project documentation
-└── requirements.txt              # Python dependencies
+├── README.md                         # Project documentation
+└── requirements.txt                  # Python dependencies
 ```
 
 ## Reproducibility Steps
