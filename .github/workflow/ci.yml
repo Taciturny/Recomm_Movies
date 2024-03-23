@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - stage
-      # Add other branches like dev or prod as needed
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
