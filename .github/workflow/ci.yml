@@ -26,24 +26,18 @@ jobs:
         with:
           terraform_version: 1.0.0
 
-      - name: Change directory to terraform
-        run: cd terraform
-
       - name: Execute deploy script
         run: |
           chmod +x ../src/deploy.sh
           ../src/deploy.sh
 
       - name: Run Unit Tests
-        run: |
-          cd Tests/Lambda
-          python unit_test.py
+        working-directory: Tests/Lambda
+        run: python unit_test.py
 
       - name: Run Integration Tests
-        run: |
-          cd Tests/infrastructure
-          pytest -v test_integration.py
+        working-directory: Tests/infrastructure
+        run: pytest -v test_integration.py
 
       - name: Destroy infrastructure
-        run: |
-          terraform destroy -auto-approve
+        run: terraform destroy -auto-approve
