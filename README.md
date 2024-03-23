@@ -67,17 +67,15 @@ Recomm_Movies/
 │       └── unit_test.py             # Unit tests for Lambda function
 │
 ├── cicd/
-│   ├── pipeline/
-│   │   └── pipeline.yaml            # AWS CodePipeline configuration
-│   └── scripts/
-│       ├── build.sh                  # Script for building CI/CD artifacts
-│       └── deploy.sh                 # Script for deploying CI/CD pipeline
+│   └── .github/
+│       └── workflows/
+│           └── ci.yml               # GitHub Actions configuration
 │
 ├── docs/
-│   └── architecture_diagram.png      # Architecture diagram
+│   └── architecture_diagram.png     # Architecture diagram
 │
-├── README.md                         # Project documentation
-└── requirements.txt                  # Python dependencies
+├── README.md                        # Project documentation
+└── requirements.txt                 # Python dependencies
 ```
 
 ## Reproducibility Steps
@@ -263,3 +261,59 @@ terraform destroy --auto-approve
 
 The screenshot below shows that all 22 resources created with Terraform have been successfully destroyed:
 ![Terraform Destroyed Notification](docs/terraform_destroyed.png)
+
+
+
+## Continuous Integration (CI)
+
+This project utilizes GitHub Actions for Continuous Integration (CI) to automate testing and ensure code quality. The CI/CD pipeline is defined in the `.github/workflows/ci.yml` file.
+
+### CI/CD Pipeline Overview
+
+The CI/CD pipeline consists of the following steps:
+
+1. **Trigger**: The pipeline is triggered on every push to the `stage` or `main` branches.
+
+2. **Environment Setup**: AWS credentials and region are configured using GitHub Secrets to enable interaction with AWS services.
+
+3. **Build Job**: 
+    - **Checkout code**: The latest code changes are fetched from the repository.
+    - **Install Python Dependencies**: Required Python dependencies are installed using `pip`.
+    - **Set up Terraform**: Terraform is configured with version 1.0.0.
+    - **Execute Deploy Script**: The deployment script located in the `src` directory is executed to deploy the infrastructure.
+
+4. **Testing**: 
+    - **Run Unit Tests**: Unit tests located in the `Tests/Lambda` directory are executed to ensure individual components function correctly.
+    - **Run Integration Tests**: Integration tests located in the `Tests/infrastructure` directory are executed to verify interactions between different modules.
+
+5. **Infrastructure Cleanup**: After all tests are executed, the infrastructure is automatically destroyed using Terraform to avoid incurring unnecessary costs.
+
+### Viewing CI/CD Status
+
+You can view the status of the CI/CD pipeline runs in the "Actions" tab of this GitHub repository. Detailed logs and reports for each pipeline run are available to help diagnose issues and track progress.
+
+Integrating CI/CD into the project workflow helps maintain code quality, streamline development processes, and ensure the reliability of the software.
+
+
+
+### Additional Scripts
+
+In addition to the main functionality provided by the project, there are additional scripts available for content-based filtering and collaborative filtering.
+
+#### Content-Based Filtering Script (`src/cb.py`)
+
+The `cb.py` script, located in the `src` directory, provides functionality for content-based movie recommendations. It analyzes the characteristics of movies and recommends similar movies based on user preferences. Before running the script, ensure preprocessing of the data:
+
+Usage:
+```bash
+cd src
+python preprocess.py  # Preprocesses the data
+python cb.py          # Executes the content-based filtering script
+```
+#### Collaborative Filtering Script (src/cf.py)
+The cf.py script, also located in the src directory, implements collaborative filtering techniques for movie recommendations. It analyzes user interactions and preferences to suggest movies similar to those liked by the user.
+Execute the command below
+```bash
+cd src
+python cf.py     # Executes the collaborative filtering script
+```
