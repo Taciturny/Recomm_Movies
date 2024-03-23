@@ -4,9 +4,13 @@ import os
 import sys
 import datetime
 import unittest
-from terraform.src.lambda_function import lambda_handler
+
+
 # Add the parent directory of the terraform module to the Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+# Correct the import statement to match the actual structure
+from terraform.src.lambda_function import lambda_handler
 
 
 class TestLambdaHandler(unittest.TestCase):
@@ -15,11 +19,11 @@ class TestLambdaHandler(unittest.TestCase):
 
     This class contains a single test method to ensure that the Lambda handler
     generates the expected training job name based on the event data provided.
-    """  
+    """
     def test_lambda_handler(self):
         """
         Tests the Lambda handler function.
-        
+
         Verifies that the Lambda handler generates the expected training job name
         based on the event data provided.
         """
