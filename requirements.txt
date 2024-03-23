@@ -6,7 +6,6 @@ pre-commit
 isort
 pylint
 pytest
-unittest
 
 # python 3.8.6
 
